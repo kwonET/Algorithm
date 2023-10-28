@@ -3,6 +3,13 @@
 #include <algorithm>
 using namespace std;
 int n,m,A[1025][1025],i,j,r,c,x1,y1,x2,y2,result;
+x=0;
+for(i=1;i<=n;i++)
+    for(j=1;j<=i*i;j++)
+        if(j%i==0)
+        for(k=1;k<=j;k++)
+            x++;
+
 int main(){
     scanf("%d %d",&n,&m);
     for(i=0;i<n;i++){
