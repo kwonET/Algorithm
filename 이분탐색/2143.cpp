@@ -34,15 +34,6 @@ int main(){
         }
     }
     sort(bsum,bsum+bidx);
-    // for(i=0;i<idx;i++){
-
-    // printf("%d ",asum[i]);
-    // }
-    //     for(i=0;i<bidx;i++){
-
-    // printf("%d ",bsum[i]);
-    // }
-    
     
     for(i=0;i<idx;i++){
         int target=t-asum[i];
