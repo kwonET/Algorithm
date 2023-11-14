@@ -13,18 +13,18 @@ int i;
 
 void dijkstra(vector<int> &gates){   
     int i,inten,cur,to,weight;
-    for(i=0;i<gates.size();i++){
-        pq.push({0,gates[i]});
-        dist[gates[i]]=0;
+    for(auto g: gates){
+        pq.push({0,g});
+        dist[g]=0;
     }
     while(!pq.empty()){
         inten=-pq.top().first; //현재까지 저장한 최대 intensity
         cur=pq.top().second; //현재 위치
         pq.pop();
         if(inten>dist[cur] || summit[cur]){continue;}
-        for(i=0;i<p[cur].size();i++){
-            to=p[cur][i].first; //다음 위치
-            weight=p[cur][i].second; //다음 위치로의 거리
+        for(auto v:p[cur]){
+            to=v.first; //다음 위치
+            weight=v.second; //다음 위치로의 거리
             
             if(dist[to]>max(inten,weight)){
                 dist[to]=max(inten,weight);
@@ -36,12 +36,12 @@ void dijkstra(vector<int> &gates){
 
 vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector<int> summits) {
     vector<int> answer;
-    for(i=0;i<summits.size();i++){
-        summit[summits[i]]=1;
+    for(auto s:summits){
+        summit[s]=1;
     }
     
-    for(i=0;i<paths.size();i++){
-        int a=paths[i][0]; int b=paths[i][1]; int c=paths[i][2];
+    for(auto line:paths){
+        int a=line[0]; int b=line[1]; int c=line[2];
         p[a].push_back({b,c});
         p[b].push_back({a,c});
     }
@@ -56,10 +56,10 @@ vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector
     
     int minDist=1e9;
     int maxS;
-    for(i=0;i<summits.size();i++){
-        if(minDist>dist[summits[i]]){
-            minDist=dist[summits[i]];
-            maxS=summits[i];
+    for(auto cand:summits){
+        if(minDist>dist[cand]){
+            minDist=dist[cand];
+            maxS=cand;
         }
     }
     answer.push_back(maxS);
