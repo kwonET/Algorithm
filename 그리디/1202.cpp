@@ -25,7 +25,7 @@ int main(){
         cin>>c;
         bagInfo.push_back(c);
     }
-    sort(jwInfo.begin(),jwInfo.end()); //왜 sort를 빼도 맞는건지?
+    sort(jwInfo.begin(),jwInfo.end()); //왜 compare 빼도 맞는건지? -> 첫번째 인자에 따라서 정렬 (무게)
     sort(bagInfo.begin(),bagInfo.end());
     
     int idx=0;
@@ -34,9 +34,8 @@ int main(){
         while(idx<jw && bags>=jwInfo[idx].first){
             pq.push(jwInfo[idx].second);
             idx++;
-            continue; //왜 continue를 빼도 맞는건지?
         } 
-        if(!pq.empty()){
+        if(!pq.empty()){ //맨 위에 있는 최댓값에 대해 한번만 실행
             totaljw+=pq.top();
             pq.pop();
         }
